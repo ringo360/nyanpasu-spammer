@@ -2,9 +2,19 @@ const wait = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 let count = 0;
 let all_count = 0;
 
+/**
+ * スレッドごとの送信間隔を設定します。(ミリ秒)
+ */
 const delay = 0;
+
+/**
+ * 同時に実行する数を設定します。
+ */
 const threads = 100;
 
+/**
+ * nyanpass.com/add.phpにPOSTリクエストを送信します。
+ */
 async function sent() {
 	try {
 		await fetch('https://nyanpass.com/add.php', {
@@ -35,6 +45,10 @@ async function sent() {
 	}
 }
 
+/**
+ * スパムを実行します。
+ * @param num スレッドの番号
+ */
 async function spammer(num: number) {
 	while (true) {
 		await sent();
@@ -43,6 +57,9 @@ async function spammer(num: number) {
 	}
 }
 
+/**
+ * コンソールに1秒間隔で情報を表示します。
+ */
 async function display() {
 	setInterval(async () => {
 		console.log(
@@ -52,6 +69,9 @@ async function display() {
 	}, 1000);
 }
 
+/**
+ * コードの処理を開始します。
+ */
 async function main() {
 	console.log('Calling...');
 	display();
